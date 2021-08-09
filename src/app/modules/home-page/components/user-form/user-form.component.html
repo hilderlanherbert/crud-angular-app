@@ -1,0 +1,46 @@
+<div class="container">
+
+    <h1 mat-dialog-title *ngIf="!data; else editing">Cadastre um novo usuário</h1>
+    <ng-template #editing>
+        <h1 mat-dialog-title>Editar usuário</h1>
+    </ng-template>
+    <div mat-dialog-content>
+
+        <form  class="example-form" [formGroup]="form">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nome</mat-label>
+                <input type="text" matInput formControlName="name" name="name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" name="email">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Telefone</mat-label>
+                <input type="tel" matInput formControlName="phone" name="phone" mask="(00) 00000-0000">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Data de nascimento</mat-label>
+                <input matInput readonly [matDatepicker]="picker" formControlName="birth_at" name="birth_at">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+        </form>
+
+    <div mat-dialog-actions>
+        <button mat-raised-button  color="primary" (click)="createUser()" *ngIf="!data; else editingButton">Cadastrar</button>
+        <ng-template #editingButton>
+            <button mat-raised-button  color="primary" (click)="editUser()">Editar</button>
+        </ng-template>
+        <button mat-button dkFocusInitial (click)="cancel()" >Cancelar</button>
+    </div>
+  
+</div>
+
+
+
